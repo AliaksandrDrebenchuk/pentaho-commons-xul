@@ -17,7 +17,10 @@
 
 package org.pentaho.ui.xul;
 
+
 public interface XulOverlay {
+  
+  public static final String DEFAULT_PERMISSION = "org.pentaho.repository.create";
 
   /**
    * Default priority value assigned to an overlay when the priority attribute is not present in the overlay XML.
@@ -67,5 +70,6 @@ public interface XulOverlay {
    * @return priority integer value
    */
   public int getPriority();
-
+  
+  String getPermission();
 }

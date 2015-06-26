@@ -17,30 +17,37 @@
 
 package org.pentaho.ui.xul.impl;
 
+import org.apache.commons.lang.StringUtils;
 import org.pentaho.ui.xul.XulOverlay;
 import org.pentaho.ui.xul.XulOverlayFragment;
 
 import java.util.List;
 
 public class DefaultXulOverlay implements XulOverlay {
-
+  
   private String id;
   private String overlayUri;
   private String source;
   private String resourceBundleUri;
+  private String permission;
   private int priority;
   private List<XulOverlayFragment> fragments;
-
+  
   public DefaultXulOverlay( String id, String overlayUri, String source, String resourceBundleUri ) {
     this( id, overlayUri, source, resourceBundleUri, DEFAULT_PRIORITY );
   }
-
+  
   public DefaultXulOverlay( String id, String overlayUri, String source, String resourceBundleUri, int priority ) {
+    this( id, overlayUri, source, resourceBundleUri, priority, null );
+  }
+
+  public DefaultXulOverlay( String id, String overlayUri, String source, String resourceBundleUri, int priority, String permission ) {
     this.id = id;
-    this.overlayUri = overlayUri;
     this.source = source;
+    this.overlayUri = overlayUri;
     this.resourceBundleUri = resourceBundleUri;
-    this.priority = priority;
+    this.priority = priority;    
+    setPermission( permission );
   }
 
   public DefaultXulOverlay( String overlayUri ) {
@@ -70,9 +77,21 @@ public class DefaultXulOverlay implements XulOverlay {
   public List<XulOverlayFragment> getOverlayFragments() {
     return fragments;
   }
+  
+  public void setPriority( int priority ) {
+    this.priority = priority;
+  }
 
   public int getPriority() {
     return priority;
+  }
+  
+  public void setPermission( String permission ) {
+    this.permission = StringUtils.isBlank( permission ) ? DEFAULT_PERMISSION : permission;
+  }
+  
+  public String getPermission() {
+    return permission;
   }
 
 }

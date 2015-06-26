@@ -86,5 +86,8 @@ public class GwtOverlay extends AbstractGwtXulContainer implements XulOverlay {
     // TODO Auto-generated method stub
     return 9999;
   }
-
+  
+  public String getPermission() {
+    return DEFAULT_PERMISSION;
+  }
 }
